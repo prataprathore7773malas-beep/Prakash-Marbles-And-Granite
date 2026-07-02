@@ -1,24 +1,24 @@
 /*==================================================
-KHUSHI MARBLES AND TILES
+PRAKASH MARBLE AND GRANITE
 PREMIUM SCRIPT
 PART 1
 ==================================================*/
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-/*=========================================
+/*=====================================
 NAVBAR SCROLL
-=========================================*/
+=====================================*/
 
 const navbar = document.querySelector(".navbar");
 
-window.addEventListener("scroll", function () {
+window.addEventListener("scroll",()=>{
 
-if (window.scrollY > 80) {
+if(window.scrollY>80){
 
 navbar.classList.add("scrolled");
 
-} else {
+}else{
 
 navbar.classList.remove("scrolled");
 
@@ -26,38 +26,38 @@ navbar.classList.remove("scrolled");
 
 });
 
-/*=========================================
+
+/*=====================================
 ACTIVE MENU
-=========================================*/
+=====================================*/
 
-const sections = document.querySelectorAll("section[id]");
+const sections=document.querySelectorAll("section[id]");
+const navLinks=document.querySelectorAll("nav ul li a");
 
-const navLinks = document.querySelectorAll("nav ul li a");
+function activeMenu(){
 
-function activeMenu() {
+let current="";
 
-let current = "";
+sections.forEach(section=>{
 
-sections.forEach(section => {
+const top=section.offsetTop-180;
 
-const sectionTop = section.offsetTop - 180;
+const height=section.offsetHeight;
 
-const sectionHeight = section.offsetHeight;
+if(window.scrollY>=top &&
+window.scrollY<top+height){
 
-if (window.scrollY >= sectionTop &&
-window.scrollY < sectionTop + sectionHeight) {
-
-current = section.getAttribute("id");
+current=section.getAttribute("id");
 
 }
 
 });
 
-navLinks.forEach(link => {
+navLinks.forEach(link=>{
 
 link.classList.remove("active");
 
-if (link.getAttribute("href") === "#" + current) {
+if(link.getAttribute("href")==="#" + current){
 
 link.classList.add("active");
 
@@ -67,27 +67,32 @@ link.classList.add("active");
 
 }
 
-window.addEventListener("scroll", activeMenu);
+window.addEventListener("scroll",activeMenu);
 
-/*=========================================
+
+/*=====================================
 SMOOTH SCROLL
-=========================================*/
+=====================================*/
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 
-anchor.addEventListener("click", function (e) {
+anchor.addEventListener("click",function(e){
 
-const target = document.querySelector(this.getAttribute("href"));
+const target=document.querySelector(
 
-if (target) {
+this.getAttribute("href")
+
+);
+
+if(target){
 
 e.preventDefault();
 
 target.scrollIntoView({
 
-behavior: "smooth",
+behavior:"smooth",
 
-block: "start"
+block:"start"
 
 });
 
@@ -97,27 +102,28 @@ block: "start"
 
 });
 
-/*=========================================
+
+/*=====================================
 SCROLL REVEAL
-=========================================*/
+=====================================*/
 
-const revealItems = document.querySelectorAll(
+const revealItems=document.querySelectorAll(
 
-".stat-card,.about-image,.about-content,.why-card,.category-card,.collection-card,.showroom-content,.showroom-image,.process-card,.testimonial-card,.faq-item,.info-card,.contact-form,.cta-box"
+".stat-card,.about-image,.about-content,.feature-box,.category-card,.collection-card,.why-card,.process-card,.highlight-box,.cta-content,.faq-item,.contact-card,.contact-form,.footer-cta"
 
 );
 
-const revealAnimation = () => {
+const reveal=()=>{
 
-revealItems.forEach(item => {
+revealItems.forEach(item=>{
 
-const top = item.getBoundingClientRect().top;
+const top=item.getBoundingClientRect().top;
 
-if (top < window.innerHeight - 120) {
+if(top<window.innerHeight-120){
 
-item.style.opacity = "1";
+item.style.opacity="1";
 
-item.style.transform = "translateY(0)";
+item.style.transform="translateY(0)";
 
 }
 
@@ -125,53 +131,62 @@ item.style.transform = "translateY(0)";
 
 };
 
-revealItems.forEach(item => {
+revealItems.forEach(item=>{
 
-item.style.opacity = "0";
+item.style.opacity="0";
 
-item.style.transform = "translateY(70px)";
+item.style.transform="translateY(70px)";
 
-item.style.transition = ".8s ease";
+item.style.transition=".8s ease";
 
 });
 
-revealAnimation();
+reveal();
 
-window.addEventListener("scroll", revealAnimation);
+window.addEventListener("scroll",reveal);
 
-/*=========================================
+
+/*=====================================
 COUNTER
-=========================================*/
+=====================================*/
 
-const counters = document.querySelectorAll(".stat-card h2");
+const counters=document.querySelectorAll(".stat-card h2");
 
-let started = false;
+let started=false;
 
-function runCounter() {
+function runCounter(){
 
-counters.forEach(counter => {
+counters.forEach(counter=>{
 
-const original = counter.innerText;
+const original=counter.innerText;
 
-const target = parseInt(original.replace(/\D/g, ""));
+const target=parseInt(original.replace(/\D/g,""));
 
-let count = 0;
+let count=0;
 
-const speed = Math.ceil(target / 120);
+const step=Math.max(1,Math.ceil(target/120));
 
-function update() {
+function update(){
 
-count += speed;
+count+=step;
 
-if (count < target) {
+if(count<target){
 
-counter.innerText = count + "+";
+if(original.includes("%")){
+
+counter.innerText=count+"%";
+
+}else{
+
+counter.innerText=count+"+";
+
+}
 
 requestAnimationFrame(update);
 
-} else {
+}else{
 
-counter.innerText = original;
+counter.innerText=original;
 
 }
 
@@ -183,98 +198,91 @@ update();
 
 }
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-const stats = document.querySelector(".stats");
+const stats=document.querySelector(".stats");
 
-if (!stats) return;
+if(!stats) return;
 
-if (window.scrollY > stats.offsetTop - 350 && !started) {
+if(window.scrollY>stats.offsetTop-350 && !started){
 
 runCounter();
 
-started = true;
+started=true;
 
 }
 
 });
-
-});   /*==================================================
-KHUSHI MARBLES AND TILES
+/*==================================================
+PRAKASH MARBLE AND GRANITE
 PREMIUM SCRIPT
 PART 2
 ==================================================*/
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded",()=>{
 
-/*=========================================
+/*=====================================
 FAQ ACCORDION
-=========================================*/
+=====================================*/
 
-const faqItems = document.querySelectorAll(".faq-item");
+const faqItems=document.querySelectorAll(".faq-item");
 
-faqItems.forEach(item => {
+faqItems.forEach(item=>{
 
-const question = item.querySelector(".faq-question");
-const answer = item.querySelector(".faq-answer");
-const icon = question.querySelector("span");
+const question=item.querySelector(".faq-question");
+const answer=item.querySelector(".faq-answer");
+const icon=question.querySelector("span");
 
-question.addEventListener("click", () => {
+question.addEventListener("click",()=>{
 
-faqItems.forEach(other => {
+faqItems.forEach(other=>{
 
-if (other !== item) {
+if(other!==item){
 
-other.querySelector(".faq-answer").style.display = "none";
-other.querySelector(".faq-question span").textContent = "+";
-
-}
-
-});
-
-if (answer.style.display === "block") {
-
-answer.style.display = "none";
-icon.textContent = "+";
-
-} else {
-
-answer.style.display = "block";
-icon.textContent = "−";
+other.querySelector(".faq-answer").style.display="none";
+other.querySelector(".faq-question span").textContent="+";
 
 }
 
 });
 
+if(answer.style.display==="block"){
+
+answer.style.display="none";
+icon.textContent="+";
+
+}else{
+
+answer.style.display="block";
+icon.textContent="−";
+
+}
+
 });
 
-/*=========================================
-CONTACT FORM
-=========================================*/
+});
 
-const form = document.querySelector(".contact-form form");
 
-if (form) {
+/*=====================================
+CONTACT FORM TO WHATSAPP
+=====================================*/
 
-form.addEventListener("submit", function (e) {
+const form=document.querySelector(".contact-form form");
+
+if(form){
+
+form.addEventListener("submit",(e)=>{
 
 e.preventDefault();
 
-const name =
-form.querySelector('input[type="text"]').value;
+const name=form.querySelector('input[type="text"]').value;
+const phone=form.querySelector('input[type="tel"]').value;
+const product=form.querySelector("select").value;
+const message=form.querySelector("textarea").value;
 
-const phone =
-form.querySelector('input[type="tel"]').value;
+const text=
 
-const product =
-form.querySelector("select").value;
-
-const message =
-form.querySelector("textarea").value;
-
-const text =
-
-`Hello Khushi Marbles And Tiles,
+`Hello Prakash Marble And Granite,
 
 Name : ${name}
 
@@ -288,7 +296,7 @@ ${message}`;
 
 window.open(
 
-"https://wa.me/918087003749?text=" +
+"https://wa.me/91XXXXXXXXXX?text="+
 
 encodeURIComponent(text),
 
@@ -302,35 +310,36 @@ form.reset();
 
 }
 
-/*=========================================
+
+/*=====================================
 SCROLL TO TOP
-=========================================*/
+=====================================*/
 
-const scrollBtn = document.querySelector(".scroll-top");
+const topBtn=document.querySelector(".scroll-top");
 
-if (scrollBtn) {
+if(topBtn){
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-if (window.scrollY > 500) {
+if(window.scrollY>500){
 
-scrollBtn.classList.add("show");
+topBtn.classList.add("show");
 
-} else {
+}else{
 
-scrollBtn.classList.remove("show");
+topBtn.classList.remove("show");
 
 }
 
 });
 
-scrollBtn.addEventListener("click", () => {
+topBtn.addEventListener("click",()=>{
 
 window.scrollTo({
 
-top: 0,
+top:0,
 
-behavior: "smooth"
+behavior:"smooth"
 
 });
 
@@ -338,97 +347,103 @@ behavior: "smooth"
 
 }
 
-/*=========================================
-FLOATING BUTTON HOVER
-=========================================*/
 
-const floatingButtons = document.querySelectorAll(
+/*=====================================
+FLOATING BUTTON EFFECT
+=====================================*/
+
+document.querySelectorAll(
 
 ".call-float,.whatsapp-float"
 
-);
+).forEach(button=>{
 
-floatingButtons.forEach(button => {
+button.addEventListener("mouseenter",()=>{
 
-button.addEventListener("mouseenter", () => {
-
-button.style.transform = "scale(1.12)";
+button.style.transform="translateY(-5px) scale(1.08)";
 
 });
 
-button.addEventListener("mouseleave", () => {
+button.addEventListener("mouseleave",()=>{
 
-button.style.transform = "scale(1)";
-
-});
-
-});
-
-/*=========================================
-BUTTON RIPPLE EFFECT
-=========================================*/
-
-const buttons = document.querySelectorAll(
-
-".primary-btn,.secondary-btn,.nav-btn"
-
-);
-
-buttons.forEach(btn => {
-
-btn.addEventListener("mouseenter", () => {
-
-btn.style.transition = ".35s";
+button.style.transform="translateY(0) scale(1)";
 
 });
 
 });
 
-/*=========================================
-IMAGE PARALLAX
-=========================================*/
 
-const heroImage = document.querySelector(".hero-image img");
+/*=====================================
+BUTTON HOVER
+=====================================*/
 
-window.addEventListener("scroll", () => {
+document.querySelectorAll(
 
-if (heroImage) {
+".primary-btn,.secondary-btn,.call-btn"
 
-heroImage.style.transform =
-`translateY(${window.pageYOffset * 0.08}px)`;
+).forEach(btn=>{
+
+btn.addEventListener("mouseenter",()=>{
+
+btn.style.transition=".35s";
+
+});
+
+});
+
+
+/*=====================================
+HERO IMAGE PARALLAX
+=====================================*/
+
+const hero=document.querySelector(".hero-image img");
+
+window.addEventListener("scroll",()=>{
+
+if(hero){
+
+hero.style.transform=
+
+`translateY(${window.pageYOffset*0.08}px)`;
 
 }
 
 });
 
-/*=========================================
-SHOWROOM IMAGE EFFECT
-=========================================*/
 
-const showroomImage = document.querySelector(".showroom-image img");
+/*=====================================
+IMAGE FADE
+=====================================*/
 
-window.addEventListener("mousemove", () => {
+document.querySelectorAll(
 
-if (showroomImage) {
+".category-card img,.collection-card img"
 
-showroomImage.style.transition = ".5s";
+).forEach(image=>{
 
-}
+image.addEventListener("mouseenter",()=>{
+
+image.style.transition=".6s";
 
 });
 
-/*=========================================
-PRELOADER PLACEHOLDER
-=========================================*/
+});
 
-window.addEventListener("load", () => {
+
+/*=====================================
+PRELOADER READY
+=====================================*/
+
+window.addEventListener("load",()=>{
 
 document.body.classList.add("loaded");
 
 });
 
-/*=========================================
-END
-=========================================*/
 
+/*=====================================
+END
+=====================================*/
+
+});
 });
