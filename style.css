@@ -754,43 +754,58 @@ z-index:1;
 
 }
 
+/*=========================
+EXPERIENCE BOX
+=========================*/
+
 .experience-box{
 
 position:absolute;
 
-left:35px;
-bottom:35px;
+right:20px;
+bottom:20px;
 
-z-index:5;
+left:auto;
 
-padding:28px;
+z-index:10;
 
-background:rgba(255,255,255,.93);
+width:180px;
 
-border-radius:18px;
+padding:18px 16px;
 
-border-left:5px solid var(--gold);
+background:rgba(255,255,255,.94);
 
-box-shadow:var(--shadow);
+backdrop-filter:blur(10px);
 
-min-width:220px;
+border-radius:16px;
+
+border-left:4px solid var(--gold);
+
+box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+text-align:center;
 
 }
 
 .experience-box span{
 
-font-size:13px;
-font-weight:700;
+font-size:11px;
+
 letter-spacing:2px;
-color:#88623d;
+
+font-weight:700;
+
+color:#8a5b2d;
 
 }
 
 .experience-box h2{
 
-font-size:52px;
+font-size:42px;
 
-margin:6px 0;
+line-height:1;
+
+margin:8px 0;
 
 color:var(--wood-dark);
 
@@ -798,9 +813,13 @@ color:var(--wood-dark);
 
 .experience-box p{
 
-color:#6d5a4b;
+font-size:13px;
 
-font-size:15px;
+line-height:1.4;
+
+margin:0;
+
+color:#6d5a4b;
 
 }
 
