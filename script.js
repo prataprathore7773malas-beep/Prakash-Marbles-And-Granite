@@ -356,21 +356,7 @@ window.addEventListener("scroll",revealOnScroll);
 
 revealOnScroll();
 
-/*==================================================
-IMAGE PARALLAX
-==================================================*/
 
-window.addEventListener("scroll",()=>{
-
-document.querySelectorAll(".about-image img,.collection-card img").forEach(img=>{
-
-const speed=window.scrollY*0.04;
-
-img.style.transform=`translateY(${speed}px) scale(1.05)`;
-
-});
-
-});
 
 /*==================================================
 CARD TILT EFFECT
