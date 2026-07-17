@@ -1,20 +1,34 @@
 /*==================================================
 PRAKASH MARBLE AND GRANITE
-PREMIUM SCRIPT
-PART 1
+SCRIPT.JS
+PART - 1
 ==================================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
+/*==================================================
+PRELOADER
+==================================================*/
 
-/*=====================================
-NAVBAR SCROLL
-=====================================*/
+window.addEventListener("load", () => {
+
+const preloader = document.querySelector(".preloader");
+
+setTimeout(() => {
+
+preloader.classList.add("hide");
+
+},700);
+
+});
+
+/*==================================================
+STICKY NAVBAR
+==================================================*/
 
 const navbar = document.querySelector(".navbar");
 
 window.addEventListener("scroll",()=>{
 
-if(window.scrollY>80){
+if(window.scrollY > 80){
 
 navbar.classList.add("scrolled");
 
@@ -26,28 +40,27 @@ navbar.classList.remove("scrolled");
 
 });
 
+/*==================================================
+ACTIVE NAV LINK
+==================================================*/
 
-/*=====================================
-ACTIVE MENU
-=====================================*/
+const sections = document.querySelectorAll("section");
 
-const sections=document.querySelectorAll("section[id]");
-const navLinks=document.querySelectorAll("nav ul li a");
+const navLinks = document.querySelectorAll("nav ul li a");
 
-function activeMenu(){
+window.addEventListener("scroll",()=>{
 
-let current="";
+let current = "";
 
 sections.forEach(section=>{
 
-const top=section.offsetTop-180;
+const sectionTop = section.offsetTop-120;
 
-const height=section.offsetHeight;
+const sectionHeight = section.clientHeight;
 
-if(window.scrollY>=top &&
-window.scrollY<top+height){
+if(pageYOffset >= sectionTop){
 
-current=section.getAttribute("id");
+current = section.getAttribute("id");
 
 }
 
@@ -57,7 +70,7 @@ navLinks.forEach(link=>{
 
 link.classList.remove("active");
 
-if(link.getAttribute("href")==="#" + current){
+if(link.getAttribute("href")=="#"+current){
 
 link.classList.add("active");
 
@@ -65,34 +78,25 @@ link.classList.add("active");
 
 });
 
-}
+});
 
-window.addEventListener("scroll",activeMenu);
-
-
-/*=====================================
+/*==================================================
 SMOOTH SCROLL
-=====================================*/
+==================================================*/
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 
 anchor.addEventListener("click",function(e){
 
-const target=document.querySelector(
+e.preventDefault();
 
-this.getAttribute("href")
-
-);
+const target=document.querySelector(this.getAttribute("href"));
 
 if(target){
 
-e.preventDefault();
-
 target.scrollIntoView({
 
-behavior:"smooth",
-
-block:"start"
+behavior:"smooth"
 
 });
 
@@ -102,238 +106,27 @@ block:"start"
 
 });
 
-
-/*=====================================
-SCROLL REVEAL
-=====================================*/
-
-const revealItems=document.querySelectorAll(
-
-".stat-card,.about-image,.about-content,.feature-box,.category-card,.collection-card,.why-card,.process-card,.highlight-box,.cta-content,.faq-item,.contact-card,.contact-form,.footer-cta"
-
-);
-
-const reveal=()=>{
-
-revealItems.forEach(item=>{
-
-const top=item.getBoundingClientRect().top;
-
-if(top<window.innerHeight-120){
-
-item.style.opacity="1";
-
-item.style.transform="translateY(0)";
-
-}
-
-});
-
-};
-
-revealItems.forEach(item=>{
-
-item.style.opacity="0";
-
-item.style.transform="translateY(70px)";
-
-item.style.transition=".8s ease";
-
-});
-
-reveal();
-
-window.addEventListener("scroll",reveal);
-
-
-/*=====================================
-COUNTER
-=====================================*/
-
-const counters=document.querySelectorAll(".stat-card h2");
-
-let started=false;
-
-function runCounter(){
-
-counters.forEach(counter=>{
-
-const original=counter.innerText;
-
-const target=parseInt(original.replace(/\D/g,""));
-
-let count=0;
-
-const step=Math.max(1,Math.ceil(target/120));
-
-function update(){
-
-count+=step;
-
-if(count<target){
-
-if(original.includes("%")){
-
-counter.innerText=count+"%";
-
-}else{
-
-counter.innerText=count+"+";
-
-}
-
-requestAnimationFrame(update);
-
-}else{
-
-counter.innerText=original;
-
-}
-
-}
-
-update();
-
-});
-
-}
-
-window.addEventListener("scroll",()=>{
-
-const stats=document.querySelector(".stats");
-
-if(!stats) return;
-
-if(window.scrollY>stats.offsetTop-350 && !started){
-
-runCounter();
-
-started=true;
-
-}
-
-});
 /*==================================================
-PRAKASH MARBLE AND GRANITE
-PREMIUM SCRIPT
-PART 2
+SCROLL TO TOP
 ==================================================*/
 
-document.addEventListener("DOMContentLoaded",()=>{
-
-/*=====================================
-FAQ ACCORDION
-=====================================*/
-
-const faqItems=document.querySelectorAll(".faq-item");
-
-faqItems.forEach(item=>{
-
-const question=item.querySelector(".faq-question");
-const answer=item.querySelector(".faq-answer");
-const icon=question.querySelector("span");
-
-question.addEventListener("click",()=>{
-
-faqItems.forEach(other=>{
-
-if(other!==item){
-
-other.querySelector(".faq-answer").style.display="none";
-other.querySelector(".faq-question span").textContent="+";
-
-}
-
-});
-
-if(answer.style.display==="block"){
-
-answer.style.display="none";
-icon.textContent="+";
-
-}else{
-
-answer.style.display="block";
-icon.textContent="−";
-
-}
-
-});
-
-});
-
-
-/*=====================================
-CONTACT FORM TO WHATSAPP
-=====================================*/
-
-const form=document.querySelector(".contact-form form");
-
-if(form){
-
-form.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-const name=form.querySelector('input[type="text"]').value;
-const phone=form.querySelector('input[type="tel"]').value;
-const product=form.querySelector("select").value;
-const message=form.querySelector("textarea").value;
-
-const text=
-
-`Hello Prakash Marble And Granite,
-
-Name : ${name}
-
-Phone : ${phone}
-
-Requirement : ${product}
-
-Message :
-
-${message}`;
-
-window.open(
-
-"https://wa.me/91XXXXXXXXXX?text="+
-
-encodeURIComponent(text),
-
-"_blank"
-
-);
-
-form.reset();
-
-});
-
-}
-
-
-/*=====================================
-SCROLL TO TOP
-=====================================*/
-
-const topBtn=document.querySelector(".scroll-top");
-
-if(topBtn){
+const scrollBtn=document.getElementById("scrollTop");
 
 window.addEventListener("scroll",()=>{
 
 if(window.scrollY>500){
 
-topBtn.classList.add("show");
+scrollBtn.classList.add("show");
 
 }else{
 
-topBtn.classList.remove("show");
+scrollBtn.classList.remove("show");
 
 }
 
 });
 
-topBtn.addEventListener("click",()=>{
+scrollBtn.addEventListener("click",()=>{
 
 window.scrollTo({
 
@@ -345,94 +138,731 @@ behavior:"smooth"
 
 });
 
+/*==================================================
+COUNTER ANIMATION
+==================================================*/
+
+const counters=document.querySelectorAll(".stat-card h2");
+
+let counterStarted=false;
+
+window.addEventListener("scroll",()=>{
+
+const stats=document.querySelector(".stats");
+
+if(!stats) return;
+
+const trigger=stats.offsetTop-500;
+
+if(window.scrollY>trigger && !counterStarted){
+
+counterStarted=true;
+
+counters.forEach(counter=>{
+
+const text=counter.innerText;
+
+const number=parseInt(text.replace(/\D/g,""));
+
+const suffix=text.replace(/[0-9]/g,"");
+
+let count=0;
+
+const speed=Math.ceil(number/80);
+
+const update=()=>{
+
+count+=speed;
+
+if(count>=number){
+
+counter.innerText=number+suffix;
+
+}else{
+
+counter.innerText=count+suffix;
+
+requestAnimationFrame(update);
+
 }
 
+};
 
-/*=====================================
-FLOATING BUTTON EFFECT
-=====================================*/
+update();
 
-document.querySelectorAll(
+});
 
-".call-float,.whatsapp-float"
+}
 
-).forEach(button=>{
+});
+
+/*==================================================
+BUTTON RIPPLE EFFECT
+==================================================*/
+
+const buttons=document.querySelectorAll(
+
+".primary-btn,.secondary-btn,.enquiry-btn,.footer-btn"
+
+);
+
+buttons.forEach(button=>{
 
 button.addEventListener("mouseenter",()=>{
 
-button.style.transform="translateY(-5px) scale(1.08)";
+button.style.transform="translateY(-6px)";
 
 });
 
 button.addEventListener("mouseleave",()=>{
 
-button.style.transform="translateY(0) scale(1)";
+button.style.transform="translateY(0px)";
 
 });
 
 });
 
-
-/*=====================================
-BUTTON HOVER
-=====================================*/
-
-document.querySelectorAll(
-
-".primary-btn,.secondary-btn,.call-btn"
-
-).forEach(btn=>{
-
-btn.addEventListener("mouseenter",()=>{
-
-btn.style.transition=".35s";
-
-});
-
-});
-
-
-/*=====================================
-HERO IMAGE PARALLAX
-=====================================*/
-
-const hero=document.querySelector(".hero-image img");
+/*==================================================
+PARALLAX HERO
+==================================================*/
 
 window.addEventListener("scroll",()=>{
 
+const hero=document.querySelector(".hero");
+
 if(hero){
 
-hero.style.transform=
+hero.style.backgroundPositionY=
 
-`translateY(${window.pageYOffset*0.08}px)`;
+window.scrollY*0.4+"px";
 
 }
 
 });
 
+/*==================================================
+REVEAL ON LOAD
+==================================================*/
 
-/*=====================================
-IMAGE FADE
-=====================================*/
+window.addEventListener("DOMContentLoaded",()=>{
 
 document.querySelectorAll(
 
-".category-card img,.collection-card img"
+".hero-left,.section-title,.stat-card"
 
-).forEach(image=>{
+).forEach(el=>{
 
-image.addEventListener("mouseenter",()=>{
-
-image.style.transition=".6s";
+el.classList.add("active");
 
 });
 
 });
 
+/*==================================================
+CURRENT YEAR (OPTIONAL)
+==================================================*/
 
-/*=====================================
-PRELOADER READY
-=====================================*/
+const year=document.getElementById("year");
+
+if(year){
+
+year.textContent=new Date().getFullYear();
+
+}
+
+/*==================================================
+END
+==================================================*//*==================================================
+PRAKASH MARBLE AND GRANITE
+SCRIPT.JS
+PART - 2
+==================================================*/
+
+/*==================================================
+FAQ ACCORDION
+==================================================*/
+
+const faqItems=document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item=>{
+
+const question=item.querySelector(".faq-question");
+
+question.addEventListener("click",()=>{
+
+faqItems.forEach(faq=>{
+
+if(faq!==item){
+
+faq.classList.remove("active");
+
+faq.querySelector(".faq-answer").style.maxHeight=null;
+
+}
+
+});
+
+item.classList.toggle("active");
+
+const answer=item.querySelector(".faq-answer");
+
+if(item.classList.contains("active")){
+
+answer.style.maxHeight=answer.scrollHeight+"px";
+
+}else{
+
+answer.style.maxHeight=null;
+
+}
+
+});
+
+});
+
+/*==================================================
+SCROLL REVEAL
+==================================================*/
+
+const revealElements=document.querySelectorAll(
+
+".stat-card,.about-image,.about-content,.trust-box,.category-card,.collection-card,.why-card,.application-box,.process-card,.testimonial-card,.contact-info,.contact-form,.footer-column"
+
+);
+
+function revealOnScroll(){
+
+const trigger=window.innerHeight*0.85;
+
+revealElements.forEach(el=>{
+
+const top=el.getBoundingClientRect().top;
+
+if(top<trigger){
+
+el.classList.add("active");
+
+}else{
+
+el.classList.remove("active");
+
+}
+
+});
+
+}
+
+window.addEventListener("scroll",revealOnScroll);
+
+revealOnScroll();
+
+/*==================================================
+IMAGE PARALLAX
+==================================================*/
+
+window.addEventListener("scroll",()=>{
+
+document.querySelectorAll(".about-image img,.collection-card img").forEach(img=>{
+
+const speed=window.scrollY*0.04;
+
+img.style.transform=`translateY(${speed}px) scale(1.05)`;
+
+});
+
+});
+
+/*==================================================
+CARD TILT EFFECT
+==================================================*/
+
+const cards=document.querySelectorAll(
+
+".category-card,.collection-card,.why-card,.testimonial-card,.process-card"
+
+);
+
+cards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+const rotateX=((y-rect.height/2)/20);
+
+const rotateY=((rect.width/2-x)/20);
+
+card.style.transform=
+
+`perspective(1000px)
+
+rotateX(${rotateX}deg)
+
+rotateY(${rotateY}deg)
+
+translateY(-8px)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="perspective(1000px) rotateX(0) rotateY(0)";
+
+});
+
+});
+
+/*==================================================
+NUMBER FLOAT EFFECT
+==================================================*/
+
+document.querySelectorAll(".step-number").forEach(step=>{
+
+step.addEventListener("mouseenter",()=>{
+
+step.animate([
+
+{
+
+transform:"translateY(0)"
+
+},
+
+{
+
+transform:"translateY(-8px)"
+
+},
+
+{
+
+transform:"translateY(0)"
+
+}
+
+],{
+
+duration:600
+
+});
+
+});
+
+});
+
+/*==================================================
+BUTTON GLOW
+==================================================*/
+
+document.querySelectorAll(
+
+".primary-btn,.secondary-btn"
+
+).forEach(btn=>{
+
+btn.addEventListener("mousemove",(e)=>{
+
+const x=e.offsetX;
+
+const y=e.offsetY;
+
+btn.style.background=
+
+`radial-gradient(circle at ${x}px ${y}px,
+
+#deb06b,
+
+#8a5b2d)`;
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.background="";
+
+});
+
+});
+
+/*==================================================
+MOUSE FOLLOW GLOW
+==================================================*/
+
+const glow=document.createElement("div");
+
+glow.style.cssText=`
+
+position:fixed;
+
+width:260px;
+
+height:260px;
+
+border-radius:50%;
+
+pointer-events:none;
+
+background:radial-gradient(circle,
+
+rgba(214,163,93,.18),
+
+transparent 70%);
+
+transform:translate(-50%,-50%);
+
+z-index:0;
+
+transition:.08s linear;
+
+`;
+
+document.body.appendChild(glow);
+
+window.addEventListener("mousemove",(e)=>{
+
+glow.style.left=e.clientX+"px";
+
+glow.style.top=e.clientY+"px";
+
+});
+
+/*==================================================
+SCROLL PROGRESS BAR
+==================================================*/
+
+const progress=document.createElement("div");
+
+progress.style.cssText=`
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+height:4px;
+
+width:0%;
+
+background:linear-gradient(90deg,#8a5b2d,#deb06b);
+
+z-index:99999;
+
+`;
+
+document.body.appendChild(progress);
+
+window.addEventListener("scroll",()=>{
+
+const total=document.documentElement.scrollHeight-window.innerHeight;
+
+const current=(window.scrollY/total)*100;
+
+progress.style.width=current+"%";
+
+});
+
+/*==================================================
+SECTION TITLE ANIMATION
+==================================================*/
+
+document.querySelectorAll(".section-title h2").forEach(title=>{
+
+title.addEventListener("mouseenter",()=>{
+
+title.animate([
+
+{
+
+letterSpacing:"0px"
+
+},
+
+{
+
+letterSpacing:"2px"
+
+},
+
+{
+
+letterSpacing:"0px"
+
+}
+
+],{
+
+duration:450
+
+});
+
+});
+
+});
+
+/*==================================================
+FLOATING WHATSAPP EFFECT
+==================================================*/
+
+const whatsapp=document.querySelector(".floating-whatsapp");
+
+if(whatsapp){
+
+setInterval(()=>{
+
+whatsapp.animate([
+
+{
+
+transform:"scale(1)"
+
+},
+
+{
+
+transform:"scale(1.08)"
+
+},
+
+{
+
+transform:"scale(1)"
+
+}
+
+],{
+
+duration:900
+
+});
+
+},3000);
+
+}
+
+/*==================================================
+END
+==================================================*/ /*==================================================
+PRAKASH MARBLE AND GRANITE
+SCRIPT.JS
+PART - 3 (FINAL)
+==================================================*/
+
+/*==================================================
+WHATSAPP ENQUIRY FORM
+==================================================*/
+
+const enquiryForm = document.getElementById("enquiryForm");
+
+if(enquiryForm){
+
+enquiryForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const name=document.getElementById("name").value.trim();
+const phone=document.getElementById("phone").value.trim();
+const requirement=document.getElementById("requirement").value.trim();
+const message=document.getElementById("message").value.trim();
+
+/*========== VALIDATION ==========*/
+
+if(name==="" || phone===""){
+
+alert("Please fill all required fields.");
+
+return;
+
+}
+
+if(phone.length<10){
+
+alert("Please enter a valid mobile number.");
+
+return;
+
+}
+
+/*========== YOUR WHATSAPP NUMBER ==========*/
+/* Replace with your own number */
+
+const whatsappNumber="919999999999";
+
+/*=========================================*/
+
+const text=
+`🏛 *New Website Enquiry*%0A%0A
+👤 Name : ${name}%0A
+📞 Phone : ${phone}%0A
+🪨 Requirement : ${requirement}%0A
+💬 Message : ${message}`;
+
+window.open(
+
+`https://wa.me/${9829073288}?text=${text}`,
+
+"_blank"
+
+);
+
+enquiryForm.reset();
+
+});
+
+}
+
+/*==================================================
+MOBILE MENU
+==================================================*/
+
+const menuBtn=document.querySelector(".menu-btn");
+const mobileMenu=document.querySelector("nav ul");
+
+if(menuBtn){
+
+menuBtn.addEventListener("click",()=>{
+
+mobileMenu.classList.toggle("show");
+
+menuBtn.classList.toggle("active");
+
+});
+
+document.querySelectorAll("nav ul li a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+mobileMenu.classList.remove("show");
+
+menuBtn.classList.remove("active");
+
+});
+
+});
+
+}
+
+/*==================================================
+LAZY IMAGE LOADING
+==================================================*/
+
+const lazyImages=document.querySelectorAll("img");
+
+const imageObserver=new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const img=entry.target;
+
+img.classList.add("loaded");
+
+imageObserver.unobserve(img);
+
+}
+
+});
+
+});
+
+lazyImages.forEach(img=>{
+
+imageObserver.observe(img);
+
+});
+
+/*==================================================
+AUTO HIGHLIGHT CURRENT NAV
+==================================================*/
+
+window.addEventListener("scroll",()=>{
+
+const scroll=window.scrollY;
+
+document.querySelectorAll("section").forEach(section=>{
+
+const top=section.offsetTop-150;
+
+const height=section.offsetHeight;
+
+const id=section.getAttribute("id");
+
+if(scroll>=top && scroll<top+height){
+
+document.querySelectorAll("nav a").forEach(link=>{
+
+link.classList.remove("active");
+
+});
+
+const active=document.querySelector(`nav a[href="#${id}"]`);
+
+if(active){
+
+active.classList.add("active");
+
+}
+
+}
+
+});
+
+});
+
+/*==================================================
+DISABLE RIGHT CLICK (OPTIONAL)
+==================================================*/
+
+// document.addEventListener("contextmenu",(e)=>{
+// e.preventDefault();
+// });
+
+/*==================================================
+DISABLE IMAGE DRAG
+==================================================*/
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.setAttribute("draggable","false");
+
+});
+
+/*==================================================
+SMOOTH PAGE FADE
+==================================================*/
+
+window.addEventListener("beforeunload",()=>{
+
+document.body.style.opacity="0";
+
+});
+
+window.addEventListener("pageshow",()=>{
+
+document.body.style.opacity="1";
+
+});
+
+/*==================================================
+CONSOLE MESSAGE
+==================================================*/
+
+console.log("%cPrakash Marble And Granite",
+
+"color:#d6a35d;font-size:24px;font-weight:bold;");
+
+console.log("%cDesigned & Developed by Pratap Singh Rathore",
+
+"color:#ffffff;font-size:14px;");
+
+/*==================================================
+PERFORMANCE
+==================================================*/
 
 window.addEventListener("load",()=>{
 
@@ -440,10 +870,6 @@ document.body.classList.add("loaded");
 
 });
 
-
-/*=====================================
-END
-=====================================*/
-
-});
-});
+/*==================================================
+END OF SCRIPT
+==================================================*/
