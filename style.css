@@ -1502,6 +1502,8 @@ position:relative;
 overflow:hidden;
 
 border-radius:22px;
+ 
+background:#fff;
 
 cursor:pointer;
 
@@ -1520,8 +1522,15 @@ transform:translateY(-14px);
 
 .collection-card img{
 
-height:360px;
-object-fit:cover;
+width:100%;
+
+height:320px;
+
+object-fit:contain;
+
+background:#fff;
+
+padding:10px;
 
 transition:1s;
 
