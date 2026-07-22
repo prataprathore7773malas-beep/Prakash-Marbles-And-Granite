@@ -582,13 +582,6 @@ display:flex;
 
 align-items:center;
 
-background:
-linear-gradient(rgba(65,38,18,.78),rgba(65,38,18,.78)),
-url(images/wood-bg.jpg);
-
-background-size:cover;
-
-background-position:center;
 
 overflow:hidden;
 
@@ -778,31 +771,7 @@ white-space:nowrap;
 
 }
 
-.hero-right{
 
-display:flex;
-
-justify-content:flex-end;
-
-align-items:center;
-
-}
-
-.hero-right img{
-
-width:100%;
-
-max-width:640px;
-
-display:block;
-
-object-fit:contain;
-
-filter:drop-shadow(0 30px 60px rgba(0,0,0,.35));
-
-animation:floating 4s ease-in-out infinite;
-
-}
 
 /*=========================================
 RESPONSIVE
@@ -3259,7 +3228,42 @@ box-shadow:
 0 25px 60px rgba(73,42,17,.25);
 
 }
+/*==========================
+HERO VIDEO
+==========================*/
 
-/*=========================
-END
-=========================*/ 
+.hero-video{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+z-index:0;
+
+}  .hero::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(25,15,8,.60);
+
+z-index:1;
+
+}
