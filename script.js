@@ -220,25 +220,8 @@ button.style.transform="translateY(0px)";
 
 });
 
-});
-
 /*==================================================
-PARALLAX HERO
-==================================================*/
-
-window.addEventListener("scroll",()=>{
-
-const hero=document.querySelector(".hero");
-
-if(hero){
-
-hero.style.backgroundPositionY=
-
-window.scrollY*0.4+"px";
-
-}
-
-});
+ 
 
 /*==================================================
 REVEAL ON LOAD
