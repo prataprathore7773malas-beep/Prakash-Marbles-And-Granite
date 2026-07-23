@@ -200,23 +200,23 @@ update();
 BUTTON RIPPLE EFFECT
 ==================================================*/
 
-const buttons=document.querySelectorAll(
-
+const buttons = document.querySelectorAll(
 ".primary-btn,.secondary-btn,.enquiry-btn,.footer-btn"
-
 );
 
-buttons.forEach(button=>{
+buttons.forEach(button => {
 
-button.addEventListener("mouseenter",()=>{
+button.addEventListener("mouseenter", () => {
 
-button.style.transform="translateY(-6px)";
+button.style.transform = "translateY(-6px)";
 
 });
 
-button.addEventListener("mouseleave",()=>{
+button.addEventListener("mouseleave", () => {
 
-button.style.transform="translateY(0px)";
+button.style.transform = "translateY(0px)";
+
+});
 
 });
 
@@ -625,9 +625,7 @@ PART - 3 (FINAL)
 WHATSAPP ENQUIRY FORM
 ==================================================*/
 
-const enquiryForm = document.getElementById("enquiryForm");
-
-if(enquiryForm){
+const enquiryForm = document.getElementById("whatsappForm");
 
 enquiryForm.addEventListener("submit",function(e){
 
@@ -659,7 +657,7 @@ return;
 /*========== YOUR WHATSAPP NUMBER ==========*/
 /* Replace with your own number */
 
-const whatsappNumber="919999999999";
+const whatsappNumber="919829073288";
 
 /*=========================================*/
 
@@ -671,14 +669,11 @@ const text=
 💬 Message : ${message}`;
 
 window.open(
-
-`https://wa.me/${9829073288}?text=${text}`,
-
+`https://wa.me/${whatsappNumber}?text=${text}`,
 "_blank"
-
 );
 
-enquiryForm.reset();
+ enquiryForm.reset();
 
 });
 
