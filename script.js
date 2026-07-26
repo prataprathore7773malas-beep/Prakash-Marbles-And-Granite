@@ -309,9 +309,7 @@ SCROLL REVEAL
 
 const revealElements=document.querySelectorAll(
 
-".stat-card,.about-image,.about-content,.trust-box,.category-card,.collection-card,.why-card,.application-box,.process-card,.testimonial-card,.contact-info,.contact-form,.footer-column"
-
-);
+".stat-card,.about-image,.about-content,.trust-box,.premium-category-card,.collection-card,.why-card,.application-box,.process-card,.testimonial-card,.contact-info,.contact-form,.footer-column"
 
 function revealOnScroll(){
 
@@ -347,7 +345,7 @@ CARD TILT EFFECT
 
 const cards=document.querySelectorAll(
 
-".category-card,.collection-card,.why-card,.testimonial-card,.process-card"
+".premium-category-card,.collection-card,.why-card,.testimonial-card,.process-card"
 
 );
 
