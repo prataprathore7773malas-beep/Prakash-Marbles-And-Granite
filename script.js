@@ -306,10 +306,11 @@ answer.style.maxHeight=null;
 /*==================================================
 SCROLL REVEAL
 ==================================================*/
-
 const revealElements=document.querySelectorAll(
 
 ".stat-card,.about-image,.about-content,.trust-box,.premium-category-card,.collection-card,.why-card,.application-box,.process-card,.testimonial-card,.contact-info,.contact-form,.footer-column"
+
+);
 
 function revealOnScroll(){
 
@@ -622,10 +623,17 @@ PART - 3 (FINAL)
 /*==================================================
 WHATSAPP ENQUIRY FORM
 ==================================================*/
-
 const enquiryForm = document.getElementById("whatsappForm");
 
+if(enquiryForm){
+
 enquiryForm.addEventListener("submit",function(e){
+
+// pura existing code
+
+});
+
+}
 
 e.preventDefault();
 
