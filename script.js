@@ -625,16 +625,11 @@ WHATSAPP ENQUIRY FORM
 ==================================================*/
 const enquiryForm = document.getElementById("whatsappForm");
 
-if(enquiryForm){
+const enquiryForm = document.getElementById("whatsappForm");
 
-enquiryForm.addEventListener("submit",function(e){
+if (enquiryForm) {
 
-// pura existing code
-
-});
-
-}
-
+    enquiryForm.addEventListener("submit", function(e) {
 e.preventDefault();
 
 const name=document.getElementById("name").value.trim();
@@ -682,6 +677,7 @@ window.open(
  enquiryForm.reset();
 
 });
+}
 
 /*==================================================
 MOBILE MENU
