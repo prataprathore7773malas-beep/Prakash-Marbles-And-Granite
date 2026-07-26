@@ -625,8 +625,6 @@ WHATSAPP ENQUIRY FORM
 ==================================================*/
 const enquiryForm = document.getElementById("whatsappForm");
 
-const enquiryForm = document.getElementById("whatsappForm");
-
 if (enquiryForm) {
 
     enquiryForm.addEventListener("submit", function(e) {
