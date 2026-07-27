@@ -700,6 +700,17 @@ ${message || "Not Mentioned"}`;
         const url =
 `https://wa.me/${919829073288}?text=${encodeURIComponent(text)}`;
 
+     console.log({
+    name,
+    phone,
+    city,
+    customerType,
+    product,
+    area,
+    requirement,
+    message
+});
+
         window.open(url, "_blank");
 
         enquiryForm.reset();
