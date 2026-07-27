@@ -1585,42 +1585,173 @@ Get Directions
 
 <!-- RIGHT -->
 
-<div class="contact-form">
+  <div class="contact-form">
 
-<form id="whatsappForm">
+    <div class="form-header">
 
-<input
-type="text"
-id="name"
-placeholder="Your Name"
-required>
+        <span>GET FREE CONSULTATION</span>
 
-<input
-type="tel"
-id="phone"
-placeholder="Phone Number"
-required>
+        <h3>Request Your Premium Quote</h3>
 
-<input
-type="text"
-id="requirement"
-placeholder="Requirement"
-required>
+        <p>
+            Fill in your project details and our experts will contact you shortly with the best marble solution.
+        </p>
 
-<textarea
-id="message"
-rows="5"
-placeholder="Your Message"></textarea>
+    </div>
 
-<button
-type="submit"
-class="primary-btn">
+    <form id="whatsappForm">
 
-Send On WhatsApp
+        <!-- Name -->
 
-</button>
+        <div class="input-group">
 
-</form>
+            <label>Full Name *</label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required>
+
+        </div>
+
+        <!-- Phone -->
+
+        <div class="input-group">
+
+            <label>Mobile Number *</label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter mobile number"
+                required>
+
+        </div>
+
+        <!-- City -->
+
+        <div class="input-group">
+
+            <label>City *</label>
+
+            <input
+                type="text"
+                id="city"
+                placeholder="Enter your city"
+                required>
+
+        </div>
+
+        <!-- Customer Type -->
+
+        <div class="input-group">
+
+            <label>You Are *</label>
+
+            <select id="customerType" required>
+
+                <option value="">Select Customer Type</option>
+
+                <option>Homeowner / Consumer</option>
+
+                <option>Architect</option>
+
+                <option>Interior Designer</option>
+
+                <option>Builder / Contractor</option>
+
+                <option>Dealer / Distributor</option>
+
+                <option>Hotel / Commercial Project</option>
+
+                <option>Other</option>
+
+            </select>
+
+        </div>
+
+        <!-- Product -->
+
+        <div class="input-group">
+
+            <label>Interested Product *</label>
+
+            <select id="product" required>
+
+                <option value="">Select Product</option>
+
+                <option>Wall Panels</option>
+
+                <option>Marble Flooring</option>
+
+                <option>Marble Stairs</option>
+
+                <option>Marble Furniture</option>
+
+                <option>Sand Stone</option>
+
+                <option>Granite</option>
+
+                <option>Woodstone</option>
+
+                <option>Multiple Products</option>
+
+            </select>
+
+        </div>
+
+        <!-- Area -->
+
+        <div class="input-group">
+
+            <label>Approx Area / Quantity</label>
+
+            <input
+                type="text"
+                id="area"
+                placeholder="Example: 1800 Sq.ft">
+
+        </div>
+
+        <!-- Requirement -->
+
+        <div class="input-group">
+
+            <label>Project Requirement *</label>
+
+            <textarea
+                id="requirement"
+                rows="4"
+                placeholder="Tell us about your project..."
+                required></textarea>
+
+        </div>
+
+        <!-- Message -->
+
+        <div class="input-group">
+
+            <label>Additional Message</label>
+
+            <textarea
+                id="message"
+                rows="3"
+                placeholder="Any additional details..."></textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="primary-btn enquiry-submit">
+
+            <i class="fab fa-whatsapp"></i>
+
+            Get Free Quote On WhatsApp
+
+        </button>
+
+    </form>
 
 </div>
 
