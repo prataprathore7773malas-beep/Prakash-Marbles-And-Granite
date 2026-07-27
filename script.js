@@ -835,26 +835,98 @@ document.body.classList.add("loaded");
 /*==================================================
 END OF SCRIPT
 ==================================================*/
-/*==================================================
-PREMIUM CATEGORY IMAGE SLIDER
-==================================================*/
+/*=========================================
+PREMIUM CATEGORY SLIDER
+=========================================*/
 
-document.querySelectorAll(".category-slider").forEach((slider) => {
+document.querySelectorAll(".premium-category-card").forEach((card) => {
 
-    const slides = slider.querySelectorAll(".slide");
+    const slides = card.querySelectorAll(".slide");
 
-    let index = 0;
+    const prevBtn = card.querySelector(".prev");
 
-    if (slides.length <= 1) return;
+    const nextBtn = card.querySelector(".next");
 
-    setInterval(() => {
+    let current = 0;
 
-        slides[index].classList.remove("active");
+    let autoSlide;
 
-        index = (index + 1) % slides.length;
+    function showSlide(index){
+
+        slides.forEach((slide)=>{
+
+            slide.classList.remove("active");
+
+        });
 
         slides[index].classList.add("active");
 
-    }, 3500);
+    }
+
+    function nextSlide(){
+
+        current++;
+
+        if(current >= slides.length){
+
+            current = 0;
+
+        }
+
+        showSlide(current);
+
+    }
+
+    function prevSlide(){
+
+        current--;
+
+        if(current < 0){
+
+            current = slides.length - 1;
+
+        }
+
+        showSlide(current);
+
+    }
+
+    function startSlider(){
+
+        autoSlide = setInterval(()=>{
+
+            nextSlide();
+
+        },5000);
+
+    }
+
+    function resetSlider(){
+
+        clearInterval(autoSlide);
+
+        startSlider();
+
+    }
+
+    nextBtn.addEventListener("click",()=>{
+
+        nextSlide();
+
+        resetSlider();
+
+    });
+
+    prevBtn.addEventListener("click",()=>{
+
+        prevSlide();
+
+        resetSlider();
+
+    });
+
+    showSlide(current);
+
+    startSlider();
 
 });
