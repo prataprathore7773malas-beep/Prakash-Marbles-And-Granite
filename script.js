@@ -623,58 +623,89 @@ PART - 3 (FINAL)
 /*==================================================
 WHATSAPP ENQUIRY FORM
 ==================================================*/
+
+/*==================================================
+WHATSAPP ENQUIRY FORM
+==================================================*/
+
 const enquiryForm = document.getElementById("whatsappForm");
 
 if (enquiryForm) {
 
-    enquiryForm.addEventListener("submit", function(e) {
-e.preventDefault();
+    enquiryForm.addEventListener("submit", function (e) {
 
-const name=document.getElementById("name").value.trim();
-const phone=document.getElementById("phone").value.trim();
-const requirement=document.getElementById("requirement").value.trim();
-const message=document.getElementById("message").value.trim();
+        e.preventDefault();
 
-/*========== VALIDATION ==========*/
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const customerType = document.getElementById("customerType").value;
+        const product = document.getElementById("product").value;
+        const area = document.getElementById("area").value.trim();
+        const requirement = document.getElementById("requirement").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-if(name==="" || phone===""){
+        if (
+            name === "" ||
+            phone === "" ||
+            city === "" ||
+            customerType === "" ||
+            product === "" ||
+            requirement === ""
+        ) {
 
-alert("Please fill all required fields.");
+            alert("Please fill all required fields.");
 
-return;
+            return;
 
-}
+        }
 
-if(phone.length<10){
+        if (!/^[6-9]\d{9}$/.test(phone)) {
 
-alert("Please enter a valid mobile number.");
+            alert("Please enter a valid 10-digit mobile number.");
 
-return;
+            return;
 
-}
+        }
 
-/*========== YOUR WHATSAPP NUMBER ==========*/
-/* Replace with your own number */
+        /*=========================
+        YOUR WHATSAPP NUMBER
+        =========================*/
 
-const whatsappNumber="919829073288";
+        const whatsappNumber = "919829073288";
 
-/*=========================================*/
+        /*=========================*/
 
-const text=
-`🏛 *New Website Enquiry*%0A%0A
-👤 Name : ${name}%0A
-📞 Phone : ${phone}%0A
-🪨 Requirement : ${requirement}%0A
-💬 Message : ${message}`;
+        const text =
+`🏛 *New Premium Website Enquiry*
 
-window.open(
-`https://wa.me/${whatsappNumber}?text=${text}`,
-"_blank"
-);
+👤 *Full Name:* ${name}
 
- enquiryForm.reset();
+📱 *Mobile:* ${phone}
 
-});
+🏙 *City:* ${city}
+
+👷 *Customer Type:* ${customerType}
+
+🪨 *Interested Product:* ${product}
+
+📐 *Approx Area / Quantity:* ${area || "Not Mentioned"}
+
+📝 *Project Requirement:*
+${requirement}
+
+💬 *Additional Message:*
+${message || "Not Mentioned"}`;
+
+        const url =
+`https://wa.me/${919829073288}?text=${encodeURIComponent(text)}`;
+
+        window.open(url, "_blank");
+
+        enquiryForm.reset();
+
+    });
+
 }
 
 /*==================================================
