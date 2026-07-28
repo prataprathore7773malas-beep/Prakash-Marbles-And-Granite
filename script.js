@@ -972,3 +972,142 @@ document.querySelectorAll(".premium-category-card").forEach((card) => {
     startSlider();
 
 });
+/*=========================================
+HERO IMAGE SLIDER
+=========================================*/
+
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroPrev = document.querySelector(".hero-prev");
+const heroNext = document.querySelector(".hero-next");
+const heroDots = document.querySelector(".hero-dots");
+
+if(heroSlides.length){
+
+let currentHero = 0;
+let heroInterval;
+
+/* Create Dots */
+
+heroSlides.forEach((slide,index)=>{
+
+const dot = document.createElement("span");
+
+dot.classList.add("hero-dot");
+
+if(index===0){
+
+dot.classList.add("active");
+
+}
+
+dot.addEventListener("click",()=>{
+
+currentHero=index;
+
+showHeroSlide(currentHero);
+
+resetHeroSlider();
+
+});
+
+heroDots.appendChild(dot);
+
+});
+
+const dots=document.querySelectorAll(".hero-dot");
+
+function showHeroSlide(index){
+
+heroSlides.forEach(slide=>slide.classList.remove("active"));
+
+dots.forEach(dot=>dot.classList.remove("active"));
+
+heroSlides[index].classList.add("active");
+
+dots[index].classList.add("active");
+
+}
+
+function nextHero(){
+
+currentHero++;
+
+if(currentHero>=heroSlides.length){
+
+currentHero=0;
+
+}
+
+showHeroSlide(currentHero);
+
+}
+
+function prevHero(){
+
+currentHero--;
+
+if(currentHero<0){
+
+currentHero=heroSlides.length-1;
+
+}
+
+showHeroSlide(currentHero);
+
+}
+
+function startHeroSlider(){
+
+heroInterval=setInterval(()=>{
+
+nextHero();
+
+},5000);
+
+}
+
+function resetHeroSlider(){
+
+clearInterval(heroInterval);
+
+startHeroSlider();
+
+}
+
+heroNext.addEventListener("click",()=>{
+
+nextHero();
+
+resetHeroSlider();
+
+});
+
+heroPrev.addEventListener("click",()=>{
+
+prevHero();
+
+resetHeroSlider();
+
+});
+
+/* Pause On Hover */
+
+const hero=document.querySelector(".hero-slider");
+
+hero.addEventListener("mouseenter",()=>{
+
+clearInterval(heroInterval);
+
+});
+
+hero.addEventListener("mouseleave",()=>{
+
+startHeroSlider();
+
+});
+
+showHeroSlide(currentHero);
+
+startHeroSlider();
+
+}
