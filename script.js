@@ -7,19 +7,27 @@ PART - 1
 /*==================================================
 PRELOADER
 ==================================================*/
-
 window.addEventListener("load", () => {
 
-const preloader = document.querySelector(".loader");
+    const preloader = document.querySelector(".preloader");
 
-setTimeout(() => {
-
-preloader.classList.add("hide");
-
-},700);
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add("hide");
+        }, 700);
+    }
 
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const preloader = document.querySelector(".preloader");
+
+    setTimeout(() => {
+        if (preloader) {
+            preloader.classList.add("hide");
+        }
+    }, 1200);
+});
 /*==================================================
 STICKY NAVBAR
 ==================================================*/
