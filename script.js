@@ -10,7 +10,7 @@ PRELOADER
 
 window.addEventListener("load", () => {
 
-const preloader = document.querySelector(".preloader");
+const preloader = document.querySelector(".loader");
 
 setTimeout(() => {
 
