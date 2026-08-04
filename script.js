@@ -19,15 +19,7 @@ window.addEventListener("load", () => {
 
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const preloader = document.querySelector(".preloader");
 
-    setTimeout(() => {
-        if (preloader) {
-            preloader.classList.add("hide");
-        }
-    }, 1200);
-});
 /*==================================================
 STICKY NAVBAR
 ==================================================*/
