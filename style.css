@@ -2032,7 +2032,86 @@ padding:10px 12px;
 
 }
 
+}/*====================================
+PREMIUM CATALOGUE
+=====================================*/
+
+.catalogue-download{
+    padding:90px 20px;
+    text-align:center;
+    background:linear-gradient(135deg,#4b2d18,#7b4b24);
+    color:#fff;
 }
+
+.catalogue-download .section-tag{
+    display:inline-block;
+    padding:8px 18px;
+    margin-bottom:20px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:40px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.catalogue-download h2{
+    font-size:48px;
+    font-family:"Cormorant Garamond",serif;
+    margin-bottom:20px;
+}
+
+.catalogue-description{
+    max-width:750px;
+    margin:0 auto 35px;
+    line-height:1.8;
+    color:#f1e7da;
+    font-size:17px;
+}
+
+.catalogue-download .primary-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:18px 38px;
+    border-radius:50px;
+    font-size:18px;
+}
+
+.catalogue-note{
+    margin-top:20px;
+    color:#f3e5cf;
+    font-size:15px;
+}
+
+.catalogue-note i{
+    color:#ffd166;
+    margin-right:8px;
+}
+
+@media(max-width:768px){
+
+.catalogue-download{
+    padding:70px 20px;
+}
+
+.catalogue-download h2{
+    font-size:34px;
+}
+
+.catalogue-description{
+    font-size:15px;
+}
+
+.catalogue-download .primary-btn{
+    width:100%;
+    justify-content:center;
+}
+
+}
+
+
 /*=========================================
 STYLE.CSS
 PART 3
