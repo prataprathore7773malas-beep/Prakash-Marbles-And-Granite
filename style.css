@@ -568,25 +568,24 @@ margin:auto;
 
 }
 
+
 /*==================================================
- HERO V3 - PREMIUM LUXURY SLIDER
+ HERO V4
  PART 1
+ LAYOUT + SLIDER + IMAGES
 ==================================================*/
 
 .hero{
     position:relative;
     width:100%;
-    height:100vh;
-    min-height:760px;
-    overflow:hidden;
-    background:#111;
+    min-height:100vh;
     display:flex;
     align-items:center;
+    overflow:hidden;
+    background:#111;
 }
 
-/*-----------------------------
- Slider Wrapper
-------------------------------*/
+/* Slider */
 
 .hero-slider{
     position:absolute;
@@ -597,93 +596,49 @@ margin:auto;
     z-index:1;
 }
 
-/*-----------------------------
- Individual Slide
-------------------------------*/
+/* Slides */
 
 .hero-slide{
     position:absolute;
     inset:0;
-    width:100%;
-    height:100%;
-
     opacity:0;
     visibility:hidden;
-
-    transition:
-    opacity .9s ease,
-    visibility .9s ease;
-
-    overflow:hidden;
+    transition:opacity .8s ease;
 }
 
 .hero-slide.active{
-
     opacity:1;
     visibility:visible;
-
+    z-index:2;
 }
 
-/*-----------------------------
- Blur Background Layer
-------------------------------*/
-
-.hero-slide::before{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:inherit;
-
-    background-size:cover;
-    background-position:center;
-
-    transform:scale(1.15);
-
-    filter:
-    blur(26px)
-    brightness(.55);
-
-    z-index:1;
-
-}
-
-/*-----------------------------
- Main Image
-------------------------------*/
+/* Images */
 
 .hero-slide img{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
 
     width:100%;
     height:100%;
 
-    object-fit:contain;
-    object-position:center;
+    object-fit:cover;
+    object-position:center center;
 
-    z-index:2;
+    transform:none !important;
+
+    animation:none !important;
 
     filter:
-    brightness(1.12)
-    contrast(1.08)
-    saturate(1.08);
+        brightness(1.08)
+        contrast(1.05)
+        saturate(1.08);
+
+    transition:opacity .8s ease;
 
     user-select:none;
     -webkit-user-drag:none;
 
 }
 
-/*-----------------------------
- Luxury Overlay
-------------------------------*/
+/* Dark Overlay */
 
 .hero::before{
 
@@ -693,249 +648,162 @@ margin:auto;
     inset:0;
 
     background:
-
     linear-gradient(
         90deg,
-        rgba(20,10,5,.74) 0%,
-        rgba(20,10,5,.35) 45%,
-        rgba(20,10,5,.12) 70%,
-        rgba(20,10,5,.20) 100%
-    ),
-
-    linear-gradient(
-        to top,
-        rgba(0,0,0,.40),
-        transparent 40%
+        rgba(25,15,8,.72) 0%,
+        rgba(25,15,8,.45) 35%,
+        rgba(25,15,8,.18) 70%,
+        rgba(25,15,8,.10) 100%
     );
 
-    z-index:5;
+    z-index:3;
 
     pointer-events:none;
 
 }
 
-/*-----------------------------
- Hero Content Layer
-------------------------------*/
+/* Bottom Gradient */
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:180px;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(0,0,0,.45)
+    );
+
+    z-index:3;
+
+    pointer-events:none;
+
+}
+
+/* Content */
 
 .hero-content{
 
     position:relative;
-
-    z-index:20;
 
     width:100%;
 
-}
-
-/*-----------------------------
- Fix Click Issue
-------------------------------*/
-
-.hero-prev,
-.hero-next,
-.hero-dots{
-
-    position:absolute;
-
-    z-index:50;
-
-    pointer-events:auto;
+    z-index:10;
 
 }
 
-.hero-slide,
+/* Image Quality */
+
 .hero-slide img{
 
-    pointer-events:none;
+    image-rendering:auto;
 
-} 
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+
+    will-change:opacity;
+
+}
+
 /*==================================================
- HERO V3
+ HERO V4
  PART 2
- CONTENT + BUTTONS + ARROWS + DOTS
+ CONTENT + BUTTONS + ARROWS + DOTS + RESPONSIVE
 ==================================================*/
 
-/*-----------------------
+/*--------------------
 CONTENT
------------------------*/
+--------------------*/
 
 .hero-content{
-
     display:flex;
     align-items:center;
-    height:100%;
-    position:relative;
-
+    min-height:100vh;
 }
 
 .hero-left{
-
-    max-width:720px;
+    max-width:650px;
     position:relative;
-    z-index:25;
-
+    z-index:20;
 }
 
 .hero-tag{
-
     display:inline-flex;
     align-items:center;
-    gap:12px;
-
-    padding:14px 26px;
-
+    gap:10px;
+    padding:12px 22px;
+    margin-bottom:25px;
     border-radius:50px;
-
     background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(14px);
-
-    border:1px solid rgba(255,255,255,.12);
-
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.15);
     color:#fff;
-
-    margin-bottom:28px;
-
+    font-size:14px;
 }
 
 .hero-tag .dot{
-
-    width:9px;
-    height:9px;
-
+    width:8px;
+    height:8px;
     border-radius:50%;
-
     background:#deb06b;
-
 }
 
 .hero h1{
-
-    font-size:90px;
-
+    font-size:82px;
     line-height:.95;
-
-    color:#fff7ef;
-
     margin-bottom:18px;
-
-    text-shadow:
-    0 8px 30px rgba(0,0,0,.45);
-
+    color:#fff;
 }
 
 .hero h1 span{
-
     display:block;
-
     color:#deb06b;
-
 }
 
 .hero h3{
-
-    font-size:28px;
-
-    color:#f3d6a0;
-
-    margin-bottom:22px;
-
+    font-size:26px;
+    margin-bottom:18px;
+    color:#f5d39d;
 }
 
 .hero p{
-
     max-width:620px;
-
-    font-size:18px;
-
-    color:#f3eadf;
-
-    margin-bottom:42px;
-
+    font-size:17px;
     line-height:1.8;
-
+    margin-bottom:35px;
+    color:#f3e8d8;
 }
 
-/*-----------------------
+/*--------------------
 BUTTONS
------------------------*/
+--------------------*/
 
 .hero-buttons{
-
     display:flex;
-
     gap:18px;
-
     flex-wrap:wrap;
-
-    margin-bottom:45px;
-
 }
 
 .hero-buttons .primary-btn{
-
-    box-shadow:
-    0 18px 45px rgba(169,108,45,.35);
-
+    box-shadow:0 15px 35px rgba(120,75,25,.35);
 }
 
 .hero-buttons .secondary-btn{
-
-    border:2px solid rgba(255,255,255,.35);
-
     background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(10px);
-
+    border:2px solid rgba(255,255,255,.20);
+    backdrop-filter:blur(12px);
 }
 
-.hero-buttons .secondary-btn:hover{
-
-    background:#fff;
-    color:#4b2d18;
-
-}
-
-/*-----------------------
-FEATURES
------------------------*/
-
-.hero-features{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:32px;
-
-}
-
-.hero-feature{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    color:#fff;
-
-    font-size:17px;
-
-}
-
-.hero-feature i{
-
-    font-size:24px;
-
-    color:#deb06b;
-
-}
-
-/*-----------------------
+/*--------------------
 ARROWS
------------------------*/
+--------------------*/
 
 .hero-prev,
 .hero-next{
@@ -946,16 +814,16 @@ ARROWS
 
     transform:translateY(-50%);
 
-    width:64px;
-    height:64px;
+    width:58px;
+    height:58px;
 
     border:none;
 
     border-radius:50%;
 
-    background:rgba(255,255,255,.14);
+    background:rgba(255,255,255,.12);
 
-    backdrop-filter:blur(16px);
+    backdrop-filter:blur(14px);
 
     color:#fff;
 
@@ -965,20 +833,16 @@ ARROWS
 
     transition:.35s;
 
-    z-index:999;
+    z-index:9999;
 
 }
 
 .hero-prev{
-
     left:28px;
-
 }
 
 .hero-next{
-
     right:28px;
-
 }
 
 .hero-prev:hover,
@@ -986,7 +850,7 @@ ARROWS
 
     background:#deb06b;
 
-    color:#3d2413;
+    color:#4b2d18;
 
     transform:
     translateY(-50%)
@@ -994,9 +858,9 @@ ARROWS
 
 }
 
-/*-----------------------
+/*--------------------
 DOTS
------------------------*/
+--------------------*/
 
 .hero-dots{
 
@@ -1012,14 +876,15 @@ DOTS
 
     gap:12px;
 
-    z-index:999;
+    z-index:9999;
 
 }
 
+.hero-dot,
 .hero-dots span{
 
-    width:13px;
-    height:13px;
+    width:12px;
+    height:12px;
 
     border-radius:50%;
 
@@ -1031,6 +896,7 @@ DOTS
 
 }
 
+.hero-dot.active,
 .hero-dots span.active{
 
     background:#deb06b;
@@ -1039,174 +905,41 @@ DOTS
 
 }
 
-/*-----------------------
+/*--------------------
 CLICK FIX
------------------------*/
-
-.hero::before{
-
-    pointer-events:none;
-
-}
-
-.hero::after{
-
-    pointer-events:none;
-
-}
+--------------------*/
 
 .hero-slider{
-
     pointer-events:none;
-
 }
 
 .hero-slide{
-
     pointer-events:none;
-
 }
 
 .hero-slide img{
-
     pointer-events:none;
-
 }
 
 .hero-prev,
 .hero-next,
 .hero-dots{
-
     pointer-events:auto;
-
-}
-.hero-slide-bg{
-
-position:absolute;
-
-inset:0;
-
-background-size:cover;
-
-background-position:center;
-
-filter:
-blur(28px)
-brightness(.55);
-
-transform:scale(1.18);
-
-z-index:1;
-
 }
 
-.hero-slide img{
+/*--------------------
+RESPONSIVE
+--------------------*/
 
-position:relative;
-
-z-index:5;
-
-width:100%;
-
-height:100%;
-
-object-fit:contain;
-
-}
-/*==================================================
- HERO V3
- PART 3
- RESPONSIVE + FINAL POLISH
-==================================================*/
-
-/*==============================
-Desktop (1600px+)
-==============================*/
-
-@media (min-width:1600px){
-
-.hero{
-
-    min-height:900px;
-
-}
-
-.hero-content{
-
-    max-width:1450px;
-    margin:auto;
-
-}
+@media(max-width:1200px){
 
 .hero h1{
-
-    font-size:96px;
-
-}
-
-.hero p{
-
-    max-width:700px;
-
+    font-size:68px;
 }
 
 }
 
-/*==============================
-Laptop
-==============================*/
-
-@media (max-width:1200px){
-
-.hero{
-
-    min-height:820px;
-
-}
-
-.hero h1{
-
-    font-size:72px;
-
-}
-
-.hero h3{
-
-    font-size:25px;
-
-}
-
-.hero p{
-
-    font-size:17px;
-
-}
-
-.hero-prev{
-
-    left:18px;
-
-}
-
-.hero-next{
-
-    right:18px;
-
-}
-
-}
-
-/*==============================
-Tablet
-==============================*/
-
-@media (max-width:991px){
-
-.hero{
-
-    min-height:760px;
-
-}
+@media(max-width:991px){
 
 .hero-content{
 
@@ -1214,35 +947,11 @@ Tablet
 
     text-align:center;
 
-    padding-top:120px;
-
 }
 
 .hero-left{
 
-    margin:auto;
-
     max-width:760px;
-
-}
-
-.hero h1{
-
-    font-size:58px;
-
-}
-
-.hero h3{
-
-    font-size:22px;
-
-}
-
-.hero p{
-
-    font-size:16px;
-
-    margin:auto auto 35px;
 
 }
 
@@ -1252,47 +961,25 @@ Tablet
 
 }
 
-.hero-features{
+.hero h1{
 
-    justify-content:center;
-
-}
-
-.hero-prev,
-.hero-next{
-
-    width:52px;
-    height:52px;
-
-    font-size:18px;
+    font-size:56px;
 
 }
 
 }
 
-/*==============================
-Mobile
-==============================*/
-
-@media (max-width:768px){
+@media(max-width:768px){
 
 .hero{
 
-    min-height:680px;
-
-}
-
-.hero-content{
-
-    padding:120px 0 70px;
+    min-height:700px;
 
 }
 
 .hero h1{
 
-    font-size:44px;
-
-    line-height:1.05;
+    font-size:42px;
 
 }
 
@@ -1312,40 +999,11 @@ Mobile
 
     flex-direction:column;
 
-    width:100%;
-
 }
 
-.hero-buttons .primary-btn,
-.hero-buttons .secondary-btn{
+.hero-buttons a{
 
     width:100%;
-
-}
-
-.hero-features{
-
-    gap:18px;
-
-    justify-content:center;
-
-}
-
-.hero-feature{
-
-    font-size:15px;
-
-}
-
-.hero-prev{
-
-    left:10px;
-
-}
-
-.hero-next{
-
-    right:10px;
 
 }
 
@@ -1353,30 +1011,16 @@ Mobile
 .hero-next{
 
     width:44px;
+
     height:44px;
 
-}
-
-.hero-dots{
-
-    bottom:18px;
-
-}
-
-.hero-dots span{
-
-    width:10px;
-    height:10px;
+    font-size:18px;
 
 }
 
 }
 
-/*==============================
-Small Mobile
-==============================*/
-
-@media (max-width:480px){
+@media(max-width:480px){
 
 .hero{
 
@@ -1384,21 +1028,9 @@ Small Mobile
 
 }
 
-.hero-content{
-
-    padding-top:110px;
-
-}
-
 .hero h1{
 
-    font-size:36px;
-
-}
-
-.hero h3{
-
-    font-size:18px;
+    font-size:34px;
 
 }
 
@@ -1408,56 +1040,12 @@ Small Mobile
 
 }
 
-.hero-tag{
-
-    font-size:13px;
-
-    padding:10px 18px;
-
-}
-
-.hero-feature{
-
-    width:100%;
-
-    justify-content:center;
-
-}
-
 .hero-prev,
 .hero-next{
 
     display:none;
 
 }
-
-}
-
-/*==============================
-Image Quality
-==============================*/
-
-.hero-slide img{
-
-    image-rendering:auto;
-
-    backface-visibility:hidden;
-
-    -webkit-backface-visibility:hidden;
-
-    transform:translateZ(0);
-
-}
-
-/*==============================
-Performance
-==============================*/
-
-.hero,
-.hero-slide,
-.hero-slide img{
-
-    will-change:opacity,transform;
 
 }
 /*=========================================
