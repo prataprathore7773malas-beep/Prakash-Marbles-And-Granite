@@ -972,142 +972,254 @@ document.querySelectorAll(".premium-category-card").forEach((card) => {
     startSlider();
 
 });
+
 /*=========================================
-HERO IMAGE SLIDER
+ HERO IMAGE SLIDER V2
+ PART 1
 =========================================*/
 
-const heroSlides = document.querySelectorAll(".hero-slide");
+const heroSlider = document.querySelector(".hero-slider");
+const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroPrev = document.querySelector(".hero-prev");
 const heroNext = document.querySelector(".hero-next");
 const heroDots = document.querySelector(".hero-dots");
 
-if(heroSlides.length){
+if (heroSlider && heroSlides.length) {
 
-let currentHero = 0;
-let heroInterval;
+    let currentHero = 0;
+    let heroInterval = null;
+    const heroDelay = 6000;
 
-/* Create Dots */
+    /*-------------------------
+    CREATE DOTS
+    -------------------------*/
 
-heroSlides.forEach((slide,index)=>{
+    heroDots.innerHTML = "";
 
-const dot = document.createElement("span");
+    heroSlides.forEach((slide, index) => {
 
-dot.classList.add("hero-dot");
+        const dot = document.createElement("span");
 
-if(index===0){
+        dot.className = "hero-dot";
 
-dot.classList.add("active");
+        if (index === 0) {
+            dot.classList.add("active");
+        }
 
-}
+        dot.addEventListener("click", () => {
 
-dot.addEventListener("click",()=>{
+            currentHero = index;
 
-currentHero=index;
+            showHero(currentHero);
 
-showHeroSlide(currentHero);
+            restartHero();
 
-resetHeroSlider();
+        });
 
-});
+        heroDots.appendChild(dot);
 
-heroDots.appendChild(dot);
+    });
 
-});
+    const dots = heroDots.querySelectorAll(".hero-dot");
 
-const dots=document.querySelectorAll(".hero-dot");
+    /*-------------------------
+    SHOW HERO
+    -------------------------*/
 
-function showHeroSlide(index){
+    function showHero(index) {
 
-heroSlides.forEach(slide=>slide.classList.remove("active"));
+        heroSlides.forEach((slide) => {
 
-dots.forEach(dot=>dot.classList.remove("active"));
+            slide.classList.remove("active");
 
-heroSlides[index].classList.add("active");
+        });
 
-dots[index].classList.add("active");
+        dots.forEach((dot) => {
 
-}
+            dot.classList.remove("active");
 
-function nextHero(){
+        });
 
-currentHero++;
+        heroSlides[index].classList.add("active");
 
-if(currentHero>=heroSlides.length){
+        dots[index].classList.add("active");
 
-currentHero=0;
+    }
 
-}
+    /*-------------------------
+    NEXT
+    -------------------------*/
 
-showHeroSlide(currentHero);
+    function nextHero() {
 
-}
+        currentHero++;
 
-function prevHero(){
+        if (currentHero >= heroSlides.length) {
 
-currentHero--;
+            currentHero = 0;
 
-if(currentHero<0){
+        }
 
-currentHero=heroSlides.length-1;
+        showHero(currentHero);
 
-}
+    }
 
-showHeroSlide(currentHero);
+    /*-------------------------
+    PREVIOUS
+    -------------------------*/
 
-}
+    function prevHero() {
 
-function startHeroSlider(){
+        currentHero--;
 
-heroInterval=setInterval(()=>{
+        if (currentHero < 0) {
 
-nextHero();
+            currentHero = heroSlides.length - 1;
 
-},5000);
+        }
 
-}
+        showHero(currentHero);
 
-function resetHeroSlider(){
+    }
+    /*-------------------------
+    START AUTO SLIDER
+    -------------------------*/
 
-clearInterval(heroInterval);
+    function startHero() {
 
-startHeroSlider();
+        stopHero();
 
-}
+        heroInterval = setInterval(() => {
 
-heroNext.addEventListener("click",()=>{
+            nextHero();
 
-nextHero();
+        }, heroDelay);
 
-resetHeroSlider();
+    }
 
-});
+    /*-------------------------
+    STOP AUTO SLIDER
+    -------------------------*/
 
-heroPrev.addEventListener("click",()=>{
+    function stopHero() {
 
-prevHero();
+        if (heroInterval) {
 
-resetHeroSlider();
+            clearInterval(heroInterval);
 
-});
+            heroInterval = null;
 
-/* Pause On Hover */
+        }
 
-const hero=document.querySelector(".hero-slider");
+    }
 
-hero.addEventListener("mouseenter",()=>{
+    /*-------------------------
+    RESTART
+    -------------------------*/
 
-clearInterval(heroInterval);
+    function restartHero() {
 
-});
+        stopHero();
 
-hero.addEventListener("mouseleave",()=>{
+        startHero();
 
-startHeroSlider();
+    }
 
-});
+    /*-------------------------
+    BUTTON EVENTS
+    -------------------------*/
 
-showHeroSlide(currentHero);
+    if (heroNext) {
 
-startHeroSlider();
+        heroNext.addEventListener("click", () => {
+
+            nextHero();
+
+            restartHero();
+
+        });
+
+    }
+
+    if (heroPrev) {
+
+        heroPrev.addEventListener("click", () => {
+
+            prevHero();
+
+            restartHero();
+
+        });
+
+    }
+
+    /*-------------------------
+    HOVER PAUSE
+    -------------------------*/
+
+    heroSlider.addEventListener("mouseenter", stopHero);
+
+    heroSlider.addEventListener("mouseleave", startHero);
+
+    /*-------------------------
+    MOBILE SWIPE
+    -------------------------*/
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    heroSlider.addEventListener("touchstart", (e) => {
+
+        touchStartX = e.changedTouches[0].screenX;
+
+    }, { passive: true });
+
+    heroSlider.addEventListener("touchend", (e) => {
+
+        touchEndX = e.changedTouches[0].screenX;
+
+        if (touchEndX < touchStartX - 50) {
+
+            nextHero();
+
+            restartHero();
+
+        }
+
+        if (touchEndX > touchStartX + 50) {
+
+            prevHero();
+
+            restartHero();
+
+        }
+
+    }, { passive: true });
+
+    /*-------------------------
+    TAB VISIBILITY
+    -------------------------*/
+
+    document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden) {
+
+            stopHero();
+
+        } else {
+
+            startHero();
+
+        }
+
+    });
+
+    /*-------------------------
+    INIT
+    -------------------------*/
+
+    showHero(currentHero);
+
+    startHero();
 
 }
